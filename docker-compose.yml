@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 services:
   api-service:
     container_name: api-pagination
@@ -28,7 +28,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: pma
+    container_name: pmaa
     networks:
       - mynet
     restart: always
