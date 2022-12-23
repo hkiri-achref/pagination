@@ -22,7 +22,7 @@ services:
     ports:
      - 6033:3306
     volumes:
-       - ./dbdata:/var/lib/mysql   #CREATES DIRECTORY IF NOT EXISTS
+       - dbdata:/var/lib/mysql   #CREATES DIRECTORY IF NOT EXISTS
     networks:
       - mynet
 
