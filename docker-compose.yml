@@ -1,0 +1,42 @@
+version: "3.9"
+services:
+  api-service:
+    container_name: api-pagination
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "5400:8080"
+    depends_on:
+      - db
+    networks:
+      - mynet
+
+  db:
+    image: mysql:8.0
+    container_name: pagination-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pagination
+      #MYSQL_USER: db_user
+     # MYSQL_PASSWORD: db_user_pass
+    ports:
+     - 6033:3306
+    volumes:
+       - ./dbdata:/var/lib/mysql   #CREATES DIRECTORY IF NOT EXISTS
+    networks:
+      - mynet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: pma
+    networks:
+      - mynet
+    restart: always
+    ports:
+      - 6200:80
+volumes:
+  dbdata:
+
+networks:
+  mynet:
+    driver: bridge
